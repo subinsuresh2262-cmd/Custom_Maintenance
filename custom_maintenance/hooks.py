@@ -5,6 +5,10 @@ app_description = "Maintenance Custom App"
 app_email = "subin@gmail.com"
 app_license = "mit"
 
+override_doctype_class = {
+    "Maintenance Schedule": "custom_maintenance.overrides.maintenance_schedule.CustomMaintenanceSchedule"
+}
+
 # Apps
 # ------------------
 
