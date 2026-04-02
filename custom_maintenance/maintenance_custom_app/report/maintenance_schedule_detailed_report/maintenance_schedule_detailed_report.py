@@ -125,6 +125,13 @@ def get_data(filters):
         conditions.append("msi.item_code = %(item_code)s")
         values["item_code"] = filters.get("item_code")
 
+    # Default filter: only Pending and Partial
+    # When show_all = 1, do not apply this filter
+    if not cint(filters.get("show_all")):
+        conditions.append("""
+            COALESCE(mv.completion_status, '') IN ('Pending', 'Partial')
+        """)
+
     where_clause = ""
     if conditions:
         where_clause = " AND " + " AND ".join(conditions)
@@ -180,3 +187,10 @@ def get_data(filters):
         values,
         as_dict=1,
     )
+
+
+def cint(value):
+    try:
+        return int(value or 0)
+    except Exception:
+        return 0

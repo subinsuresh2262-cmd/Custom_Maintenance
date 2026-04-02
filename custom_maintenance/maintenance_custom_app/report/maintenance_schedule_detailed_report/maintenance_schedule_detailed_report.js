@@ -27,6 +27,12 @@ frappe.query_reports["Maintenance Schedule Detailed Report"] = {
 			label: "Item Code",
 			fieldtype: "Link",
 			options: "Item"
+		},
+		{
+			fieldname: "show_all",
+			label: "Show All",
+			fieldtype: "Check",
+			default: 0
 		}
 	]
 };
